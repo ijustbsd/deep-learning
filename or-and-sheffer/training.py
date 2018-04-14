@@ -22,7 +22,7 @@ def one_epoch():
         if not d:
             continue
 
-        weights[0] += tools.weight_delta(d, 1, weights[1])
+        weights[0] += tools.weight_delta(d, 1, weights[0])
         weights[1] += tools.weight_delta(d, x1, weights[1])
         weights[2] += tools.weight_delta(d, x2, weights[2])
         tools.save_weights(weights)
