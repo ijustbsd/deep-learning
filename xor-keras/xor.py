@@ -2,6 +2,7 @@
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.optimizers import SGD
+from keras.callbacks import TensorBoard
 import numpy as np
 
 dataset = np.array([
@@ -25,8 +26,10 @@ model = Sequential([
 sgd = SGD(lr=.5)
 model.compile(optimizer=sgd, loss='mse')
 
+tensorboard = TensorBoard(log_dir='logs', write_graph=True)
+
 # https://keras.io/getting-started/sequential-model-guide/#training
-model.fit(dataset, result, epochs=200)
+model.fit(dataset, result, epochs=200, verbose=False, callbacks=[tensorboard])
 print(model.predict_proba(dataset))
 
 '''
